@@ -18,7 +18,14 @@ app.use(express.errorHandler({ dumpExceptions: true, showStack: true}));
 
 app.get('/', function(req, res) {
 	res.send("yolo");
-})
+});
+
+app.get('/json', function(req, res) {
+	var toSend = {
+		message: "worked!"
+	};
+	res.send(toSend);
+});
 
 // 12345 because that's where my final project was and I'm used to it
 app.listen(12345);
