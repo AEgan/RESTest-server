@@ -8,6 +8,6 @@ exports.list = function(req, res) {
 // put message to create a new message
 exports.put = function(req, res) {
 	var message = new messages(req.query.author, req.query.message);
-	res.send(message);
+	res.send({message: "good"});
 }
 
