@@ -11,7 +11,7 @@ function Message(author, message) {
 
 // gets dat array
 Message.list = function() {
-	return db;
+	return JSON.stringify(db);
 }
 
 module.exports = Message;
