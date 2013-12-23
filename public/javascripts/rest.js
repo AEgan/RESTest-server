@@ -1,3 +1,8 @@
 $(document).ready(function() {
-	alert("here");
+	function newMsgSubmit() {
+		alert("hi");
+	}
+
+	$("#new-msg-form").submit(newMsgSubmit);
+
 });
