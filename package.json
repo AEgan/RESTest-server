@@ -13,7 +13,8 @@
 		"type": "git"
 	},
 	"dependencies": {
-		"express": "3.0.0"
+		"express": "3.0.0",
+		"ejs": "*"
 	},
 	"engines": {
 		"node": "0.10.x"

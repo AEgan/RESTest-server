@@ -3,23 +3,18 @@ var messages = require('./routes/messages_controller.js');
 var app = express();
 
 
-//prob don't need most of these but whatever
-// like I don't have views now so I don't need this
 app.set('views', __dirname + '/views');
-// or this
 app.set('view engine', 'ejs');
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.logger('tiny'));	// Log requests to the console.log
-// I don't even have a public folder lol
 app.use(express.static(__dirname + '/public'));
 app.use(express.errorHandler({ dumpExceptions: true, showStack: true}));
-// but I'll keep these in there for now whatever
 
 
 app.get('/', function(req, res) {
-	res.send("yolo");
+	res.render('index');
 });
 
 app.get('/json', function(req, res) {
