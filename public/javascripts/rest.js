@@ -1,4 +1,13 @@
 $(document).ready(function() {
+
+	$.ajax({
+		url: '/list',
+		type: "get",
+		success: function(data) {
+			console.log(data);
+		}
+	});
+
 	$("#submit").click(function(e) {
 		e.preventDefault();
 		var auth = $("#author").val();
@@ -17,7 +26,3 @@ $(document).ready(function() {
 		});
 	});
 });
-
-function newMsgFunction() {
-
-}
