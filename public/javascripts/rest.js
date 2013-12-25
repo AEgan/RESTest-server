@@ -4,7 +4,18 @@ $(document).ready(function() {
 		url: '/list',
 		type: "get",
 		success: function(data) {
-			console.log(data);
+			var table = $('#messages');
+			var db = JSON.parse(data);
+			var toAppend = "<tr>";
+			db.forEach(function(item) {
+				console.log(item.author);
+				console.log(item.message);
+				console.log("-----");
+				toAppend += "<td>" + item.author + "</td>";
+				toAppend += "<td>" + item.message + "</td>";
+				toAppend += "</tr>";
+			});
+			table.append(toAppend);
 		}
 	});
 
