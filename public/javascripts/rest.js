@@ -13,8 +13,7 @@ $(document).ready(function() {
 		$.ajax({
 			url: urlStr,
 			type: "put",
-			success: function(data) {
-			}
+			success: doGet
 		});
 	});
 
@@ -24,6 +23,7 @@ $(document).ready(function() {
 			type: 'get',
 			success: function(data) {
 				var table = $('#messages');
+				$("#messages > tbody").html("");
 				var db = JSON.parse(data);
 				var toAppend = "<tr>";
 				db.forEach(function(item) {
