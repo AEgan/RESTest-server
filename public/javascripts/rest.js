@@ -1,24 +1,5 @@
 $(document).ready(function() {
 
-	$.ajax({
-		url: '/list',
-		type: "get",
-		success: function(data) {
-			var table = $('#messages');
-			var db = JSON.parse(data);
-			var toAppend = "<tr>";
-			db.forEach(function(item) {
-				console.log(item.author);
-				console.log(item.message);
-				console.log("-----");
-				toAppend += "<td>" + item.author + "</td>";
-				toAppend += "<td>" + item.message + "</td>";
-				toAppend += "</tr>";
-			});
-			table.append(toAppend);
-		}
-	});
-
 	$("#submit").click(function(e) {
 		e.preventDefault();
 		var auth = $("#author").val();
@@ -36,4 +17,30 @@ $(document).ready(function() {
 			}
 		});
 	});
+
+	function doGet() {
+		$.ajax({
+			url: '/list',
+			type: 'get',
+			success: function(data) {
+				var table = $('#messages');
+				var db = JSON.parse(data);
+				var toAppend = "<tr>";
+				db.forEach(function(item) {
+					console.log(item.author);
+					console.log(item.message);
+					console.log("-----");
+					toAppend += "<td>" + item.author + "</td>";
+					toAppend += "<td>" + item.message + "</td>";
+					toAppend += "</tr>";
+				});
+				table.append(toAppend);
+			}
+		});
+	}
+
+	doGet();
+
+
+
 });
