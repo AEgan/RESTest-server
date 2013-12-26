@@ -24,3 +24,22 @@ nav > a.brand {
 nav > a:hover {
 	color: #888888;
 }
+
+table {
+	border: 1px solid #ddd;
+}
+
+tbody > tr:nth-child(odd) > td,
+tbody > tr:nth-child(odd) > th {
+  background-color: rgb(252, 195, 191);
+}
+
+tbody > tr:hover > td,
+tbody > tr:hover > th {
+  background-color: #f5f5f5;
+}
+
+.container {
+	padding-left: 5%;
+	padding-right: 5%;
+}
