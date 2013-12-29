@@ -2,12 +2,17 @@ var messages = require('../models/messages.js');
 
 // list messages
 exports.list = function(req, res) {
-	res.send(messages.list());
+	messages.list(function(docs) {
+		res.send(docs);
+	});
 }
 
 // put message to create a new message
 exports.put = function(req, res) {
-	var message = new messages(req.query.author, req.query.message);
-	res.send({message: "good"});
+	var author = req.query.author;
+	var message = req.query.message;
+	messages.insert(author, message, function(crsr) {
+		res.send({message: "good"});
+	});
 }
 

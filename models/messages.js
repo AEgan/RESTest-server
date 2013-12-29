@@ -10,13 +10,6 @@ var collection = "rest";
 var database = "messages";
 var mongodb = require('mongodb');
 
-// inserts a message to the array
-function Message(author, message) {
-	this.author = author;
-	this.message = message;
-	db.push(this);
-}
-
 /*
  * Throws an error
  */
@@ -59,11 +52,3 @@ exports.list = function(callback) {
 		});
 	});
 }
-
-
-// gets dat array
-Message.list = function() {
-	return JSON.stringify(db);
-}
-
-module.exports = Message;

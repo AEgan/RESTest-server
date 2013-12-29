@@ -21,15 +21,12 @@ $(document).ready(function() {
 		$.ajax({
 			url: '/list',
 			type: 'get',
+			dataType: 'json',
 			success: function(data) {
 				var table = $('#messages');
 				$("#messages > tbody").html("");
-				var db = JSON.parse(data);
 				var toAppend = "<tr>";
-				db.forEach(function(item) {
-					console.log(item.author);
-					console.log(item.message);
-					console.log("-----");
+				data.forEach(function(item) {
 					toAppend += "<td>" + item.author + "</td>";
 					toAppend += "<td>" + item.message + "</td>";
 					toAppend += "</tr>";
