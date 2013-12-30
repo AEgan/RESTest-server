@@ -52,3 +52,37 @@ exports.list = function(callback) {
 		});
 	});
 }
+
+/*
+ * destroy a message
+ */
+exports.destroy = function(id, callback) {
+	mongoClient.connect(server+database, function(err, db) {
+		if(err) {
+			doError(err);
+		}
+		db.collection(collection).findAndRemove({"_id": mongodb.ObjectID(id)}, ["author", "ascending"], function(err, doc) {
+			if(err) {
+				doError(err);
+			}
+			callback("Successfully Removed");
+		});	
+	});
+}
+
+/*
+ * updates a message
+ */
+exports.update = function(id, author, message, callback) {
+	mongoClient.connect(server+database, function(err, docs) {
+		if(err) {
+			doError(err);
+		}
+		db.collection(collection).update({"_id": mongodb.ObjectID(id)}, {'$set': {'author': author, 'message' : message }}, {new: true}, function(err, crsr) {
+			if(err) {
+				doError(err);
+			}
+			callback('Successfully Updated');
+		});
+	});
+}
