@@ -86,3 +86,21 @@ exports.update = function(id, author, message, callback) {
 		});
 	});
 }
+
+/*
+ * finds a message by ID
+ */
+exports.find_by_id = function(id, callback) {
+	mongoClient.connect(server+database, function(err, docs) {
+		if(err) {
+			doError(err);
+		}
+		var crsr = db.collection(collection).find({'id': mongodb.ObjectID(id)});
+		crsr.toArray(function(err, docs) {
+			if(err) {
+				doError(err);
+			}
+			callback(docs[0]);
+		});
+	});
+}
