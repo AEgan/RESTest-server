@@ -16,3 +16,10 @@ exports.put = function(req, res) {
 	});
 }
 
+// find a message by its ID
+exports.find = function(req, res) {
+	var id =req.query.id;
+	messages.find_by_id(id, function(msg) {
+		res.send(msg);
+	});
+}

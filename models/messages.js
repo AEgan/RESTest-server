@@ -9,6 +9,7 @@ var server = "mongodb://localhost:27017/";
 var collection = "rest";
 var database = "messages";
 var mongodb = require('mongodb');
+var ObjectId = require('mongodb').ObjectID;
 
 /*
  * Throws an error
@@ -74,7 +75,7 @@ exports.destroy = function(id, callback) {
  * updates a message
  */
 exports.update = function(id, author, message, callback) {
-	mongoClient.connect(server+database, function(err, docs) {
+	mongoClient.connect(server+database, function(err, db) {
 		if(err) {
 			doError(err);
 		}
@@ -91,11 +92,11 @@ exports.update = function(id, author, message, callback) {
  * finds a message by ID
  */
 exports.find_by_id = function(id, callback) {
-	mongoClient.connect(server+database, function(err, docs) {
+	mongoClient.connect(server+database, function(err, db) {
 		if(err) {
 			doError(err);
 		}
-		var crsr = db.collection(collection).find({'id': mongodb.ObjectID(id)});
+		var crsr = db.collection(collection).find({'_id': mongodb.ObjectID(id)});
 		crsr.toArray(function(err, docs) {
 			if(err) {
 				doError(err);

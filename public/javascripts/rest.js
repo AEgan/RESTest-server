@@ -17,7 +17,22 @@ $(document).ready(function() {
 		});
 	});
 
-	function doGet() {
+	function addClickFunction() {
+		$('.msg').each(function(item, element) {
+			$(element).click(function() {
+				$.ajax({
+					url: '/find?id='+element.id,
+					type: 'get',
+					dataType: 'json',
+					success: function(data) {
+						console.log(data);
+					}
+				});
+			});
+		});
+	}
+
+	function doGet(callback) {
 		$.ajax({
 			url: '/list',
 			type: 'get',
@@ -25,19 +40,22 @@ $(document).ready(function() {
 			success: function(data) {
 				var table = $('#messages');
 				$("#messages > tbody").html("");
-				var toAppend = "<tr>";
+				var toAppend = "";
 				data.forEach(function(item) {
+					toAppend += "<tr class='msg' id='" + item._id + "'>";
 					toAppend += "<td>" + item.author + "</td>";
 					toAppend += "<td>" + item.message + "</td>";
 					toAppend += "</tr>";
 				});
 				table.append(toAppend);
+				callback();
 			}
 		});
 	}
 
-	doGet();
+	doGet(addClickFunction);
 
 
+	//addClickFunction();
 
 });
