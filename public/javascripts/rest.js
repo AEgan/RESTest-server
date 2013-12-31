@@ -21,11 +21,23 @@ $(document).ready(function() {
 		$('.msg').each(function(item, element) {
 			$(element).click(function() {
 				$.ajax({
-					url: '/find?id='+element.id,
+					url: '/find?id='+$(element).attr('data'),
 					type: 'get',
 					dataType: 'json',
 					success: function(data) {
 						console.log(data);
+					}
+				});
+			});
+		});
+		$('.destroybutton').each(function(item, element) {
+			$(element).click(function() {
+				$.ajax({
+					url: '/destroy?id='+$(element).attr('data'),
+					type: 'delete',
+					success: function(data) {
+						alert(data);
+						doGet(addClickFunction);
 					}
 				});
 			});
@@ -42,9 +54,10 @@ $(document).ready(function() {
 				$("#messages > tbody").html("");
 				var toAppend = "";
 				data.forEach(function(item) {
-					toAppend += "<tr class='msg' id='" + item._id + "'>";
+					toAppend += "<tr class='msg' data='" + item._id + "'>";
 					toAppend += "<td>" + item.author + "</td>";
 					toAppend += "<td>" + item.message + "</td>";
+					toAppend += "<td><button class='destroybutton' data='"+item._id+"'>X</td>"
 					toAppend += "</tr>";
 				});
 				table.append(toAppend);

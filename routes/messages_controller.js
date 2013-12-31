@@ -23,3 +23,11 @@ exports.find = function(req, res) {
 		res.send(msg);
 	});
 }
+
+// destroy a message
+exports.destroy = function(req, res) {
+	var id = req.query.id;
+	messages.destroy(id, function(data) {
+		res.send(data);
+	});
+}

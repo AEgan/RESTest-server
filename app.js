@@ -27,6 +27,7 @@ app.get('/json', function(req, res) {
 app.get('/list', messages.list);
 app.put('/put', messages.put);
 app.get('/find', messages.find);
+app.delete('/destroy', messages.destroy);
 
 // 12345 because that's where my final project was and I'm used to it
 app.listen(12345);
