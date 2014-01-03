@@ -13,7 +13,7 @@ $(document).ready(function() {
 		$.ajax({
 			url: urlStr,
 			type: "put",
-			success: doGet
+			success: doGet(addClickFunction)
 		});
 	});
 
